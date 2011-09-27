@@ -25,7 +25,7 @@
 " OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 " SOFTWARE.
 
-if version < 700
+if version < 600
   syntax clear
 elseif exists('b:current_syntax')
   finish
