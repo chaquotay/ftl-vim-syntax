@@ -49,15 +49,25 @@ syn keyword ftlDirective contained function return t rt lt nt ftl
 syn keyword ftlKeyword contained as in using
 
 " highlighting
-highlight link ftlKeyword Statement
-highlight link ftlDirective Statement
-highlight link ftlStartDirective Function
-highlight link ftlEndDirective Function
-highlight link ftlStartUserDirective Function
-highlight link ftlEndUserDirective Function
-highlight link ftlInterpolation Constant
-highlight link ftlInterpolation2 Constant
-highlight link ftlString Constant
-highlight link ftlComment Comment
+
+" don't use standard HiLink, it will not work with included syntax files
+if version < 508
+  command! -nargs=+ FtlHiLink hi link <args>
+else
+  command! -nargs=+ FtlHiLink hi def link <args>
+endif
+
+FtlHiLink ftlKeyword Statement
+FtlHiLink ftlDirective Statement
+FtlHiLink ftlStartDirective Function
+FtlHiLink ftlEndDirective Function
+FtlHiLink ftlStartUserDirective Function
+FtlHiLink ftlEndUserDirective Function
+FtlHiLink ftlInterpolation Constant
+FtlHiLink ftlInterpolation2 Constant
+FtlHiLink ftlString Constant
+FtlHiLink ftlComment Comment
+
+delcommand FtlHiLink
 
 let b:current_syntax = "ftl"
