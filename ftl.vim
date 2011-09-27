@@ -33,6 +33,10 @@ endif
 
 syn case match
 
+" Load html syntax.
+runtime! syntax/html.vim
+unlet b:current_syntax
+
 " directives and interpolations
 syn region ftlStartDirective start=+<#+ end=+>+ contains=ftlKeyword, ftlDirective, ftlString, ftlComment
 syn region ftlEndDirective start=+</#+ end=+>+ contains=ftlDirective
