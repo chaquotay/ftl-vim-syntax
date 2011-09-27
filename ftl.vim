@@ -25,6 +25,12 @@
 " OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 " SOFTWARE.
 
+if version < 700
+  syntax clear
+elseif exists('b:current_syntax')
+  finish
+endif
+
 syn case match
 
 " directives and interpolations
