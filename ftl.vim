@@ -60,3 +60,4 @@ highlight link ftlInterpolation2 Constant
 highlight link ftlString Constant
 highlight link ftlComment Comment
 
+let b:current_syntax = "ftl"
