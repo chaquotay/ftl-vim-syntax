@@ -34,8 +34,15 @@ endif
 syn case match
 
 " Load html syntax.
-runtime! syntax/html.vim
-unlet b:current_syntax
+function! s:load_html_syntax()
+    if (exists('b:ftl_no_html') && b:ftl_no_html)
+    \   || (exists('g:ftl_no_html') && g:ftl_no_html)
+        return
+    endif
+    runtime! syntax/html.vim
+    unlet b:current_syntax
+endfunction
+call s:load_html_syntax()
 
 " directives and interpolations
 syn region ftlStartDirective start=+<#+ end=+>+ contains=ftlKeyword, ftlDirective, ftlString, ftlComment
