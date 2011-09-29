@@ -3,6 +3,19 @@
 " Maintainer:  Stephan Müller <stephan@notatoaster.org>
 " Last Change: 2008 Oct 22
 "
+" Changelog:
+" 1.0 Stephan Müller: Original version
+" 1.1 tyru:
+"   Added Feature:
+"     * Highlight html tags.
+"       * The user can disable the feature by adding its setting to .vimrc:
+"           let g:ftl_no_html = 1
+"         The feature enabled by default.
+"   Fixed Issues:
+"     * Missing boilerplates of vim syntax plugin
+"       * b:current_syntax is not defined. vim syntax plugin must define it.
+"       * if b:current_syntax is defined, do not load syntax plugin
+"
 " Licensed under the MIT License (MIT):
 "
 " Copyright (c) 2008 Stephan Müller
