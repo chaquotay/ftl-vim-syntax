@@ -3,6 +3,19 @@
 " Maintainer:  Stephan Müller <stephan@notatoaster.org>
 " Last Change: 2008 Oct 22
 "
+" Changelog:
+" 1.0 Stephan Müller: Original version
+" 1.1 tyru:
+"   Added Feature:
+"     * Highlight html tags.
+"       * The user can disable the feature by adding its setting to .vimrc:
+"           let g:ftl_no_html = 1
+"         The feature enabled by default.
+"   Fixed Issues:
+"     * Missing boilerplates of vim syntax plugin
+"       * b:current_syntax is not defined. vim syntax plugin must define it.
+"       * if b:current_syntax is defined, do not load syntax plugin
+"
 " Licensed under the MIT License (MIT):
 "
 " Copyright (c) 2008 Stephan Müller
@@ -25,7 +38,26 @@
 " OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 " SOFTWARE.
 
+" For version 5.x: Clear all syntax items
+" For version 6.x: Quit when a syntax file was already loaded
+if version < 600
+  syntax clear
+elseif exists('b:current_syntax')
+  finish
+endif
+
 syn case match
+
+" Load html syntax.
+function! s:load_html_syntax()
+    if (exists('b:ftl_no_html') && b:ftl_no_html)
+    \   || (exists('g:ftl_no_html') && g:ftl_no_html)
+        return
+    endif
+    runtime! syntax/html.vim
+    unlet b:current_syntax
+endfunction
+call s:load_html_syntax()
 
 " directives and interpolations
 syn region ftlStartDirective start=+<#+ end=+>+ contains=ftlKeyword, ftlDirective, ftlString, ftlComment
@@ -49,14 +81,25 @@ syn keyword ftlDirective contained function return t rt lt nt ftl
 syn keyword ftlKeyword contained as in using
 
 " highlighting
-highlight link ftlKeyword Statement
-highlight link ftlDirective Statement
-highlight link ftlStartDirective Function
-highlight link ftlEndDirective Function
-highlight link ftlStartUserDirective Function
-highlight link ftlEndUserDirective Function
-highlight link ftlInterpolation Constant
-highlight link ftlInterpolation2 Constant
-highlight link ftlString Constant
-highlight link ftlComment Comment
 
+" don't use standard HiLink, it will not work with included syntax files
+if version < 508
+  command! -nargs=+ FtlHiLink hi link <args>
+else
+  command! -nargs=+ FtlHiLink hi def link <args>
+endif
+
+FtlHiLink ftlKeyword Statement
+FtlHiLink ftlDirective Statement
+FtlHiLink ftlStartDirective Function
+FtlHiLink ftlEndDirective Function
+FtlHiLink ftlStartUserDirective Function
+FtlHiLink ftlEndUserDirective Function
+FtlHiLink ftlInterpolation Constant
+FtlHiLink ftlInterpolation2 Constant
+FtlHiLink ftlString Constant
+FtlHiLink ftlComment Comment
+
+delcommand FtlHiLink
+
+let b:current_syntax = "ftl"
