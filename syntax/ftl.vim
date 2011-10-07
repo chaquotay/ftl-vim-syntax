@@ -15,6 +15,9 @@
 "     * Missing boilerplates of vim syntax plugin
 "       * b:current_syntax is not defined. vim syntax plugin must define it.
 "       * if b:current_syntax is defined, do not load syntax plugin
+" 1.2 tyru:
+"     * Sorry, remove HTML highlight feature.
+"       because ":setfiletype html.ftl" is enough.
 "
 " Licensed under the MIT License (MIT):
 "
