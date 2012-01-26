@@ -1,1 +1,5 @@
 Vim syntax for FTL (FreeMarker Template Language)
+
+To install with Janus just cd ~/.janus
+git clone git://github.com/NateW/ftl-vim-syntax.git
+done!
