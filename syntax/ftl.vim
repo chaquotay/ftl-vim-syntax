@@ -1,10 +1,10 @@
 " Vim syntax file
 " Language:    FreeMarker Template Language (FTL)
-" Maintainer:  Stephan Müller <stephan@notatoaster.org>
+" Maintainer:  Stephan Mï¿½ller <stephan@notatoaster.org>
 " Last Change: 2008 Oct 22
 "
 " Changelog:
-" 1.0 Stephan Müller: Original version
+" 1.0 Stephan Mï¿½ller: Original version
 " 1.1 tyru:
 "   Added Feature:
 "     * Highlight html tags.
@@ -21,7 +21,7 @@
 "
 " Licensed under the MIT License (MIT):
 "
-" Copyright (c) 2008 Stephan Müller
+" Copyright (c) 2008 Stephan Mï¿½ller
 "
 " Permission is hereby granted, free of charge, to any person obtaining a copy
 " of this software and associated documentation files (the "Software"), to deal
@@ -67,7 +67,7 @@ syn region ftlComment start=+<#--+ end=+-->+
 syn region ftlCommentAlt start=+\[#--+ end=+--\]+
 
 " keywords
-syn keyword ftlDirective contained list if else macro import include switch case break
+syn keyword ftlDirective contained list if else elseif macro import include switch case break
 syn keyword ftlDirective contained assign local global nested recurse fallback visit
 syn keyword ftlDirective contained function return t rt lt nt ftl
 syn keyword ftlKeyword contained as in using
